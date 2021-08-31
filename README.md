@@ -2,6 +2,12 @@
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
+URL: https://elated-ritchie-5bd94d.netlify.app/
+
+### Plugins
+
+- https://github.com/cmfcmf/docusaurus-search-local
+
 ### Installation
 
 ```
