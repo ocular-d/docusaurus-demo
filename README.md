@@ -37,3 +37,9 @@ $ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## Notes
+
+- https://github.com/facebook/docusaurus/blob/c8cf48a355b01356c0be541a4c16a1907ad0bc3a/website/docusaurus.config.js#L139-L147
+- https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-ideal-image
+- https://docusaurus.io/docs/api/plugins
