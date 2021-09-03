@@ -3,38 +3,65 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://elated-ritchie-5bd94d.netlify.app/',
+  title: 'Documentation',
+  tagline: 'Docs are cool',
+  url: 'https://sven.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-  plugins: [
-    require.resolve('@cmfcmf/docusaurus-search-local')
-  ],
+  customFields: {
+    description:
+      'An optimized site generator in React. Docusaurus helps you to move fast and write content. Build documentation websites, blogs, marketing pages, and more.',
+  },
+  organizationName: 'plone', // Usually your GitHub org/user name.
+  projectName: 'documentation', // Usually your repo name.
+  // plugins: [
+  //   require.resolve('@cmfcmf/docusaurus-search-local')
+  // ],
   themeConfig: {
+    announcementBar: {
+      id: 'support_us', // Any value that will identify this message.
+      content:
+        'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
+      backgroundColor: '#fafbfc', // Defaults to `#fff`.
+      textColor: '#091E42', // Defaults to `#000`.
+      isCloseable: false, // Defaults to `true`.
+    },
+    colorMode: {
+      // "light" | "dark"
+      defaultMode: 'light',
+      // Hides the switch in the navbar
+      // Useful if you want to support a single color mode
+      disableSwitch: true,
+    },
+    //hideableSidebar: true,
+    prism: {
+      theme: require('prism-react-renderer/themes/dracula'),
+    },
     navbar: {
-      title: 'My Site',
+      title: 'Documentation',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          type: 'doc',
-          docId: 'intro',
+          //type: 'doc',
+          docId: 'upload',
+          to: '/tutorials/upload',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Tutorials',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+          //type: 'doc',
+          docId: 'upload',
+          to: '/tutorials/upload',
+          position: 'left',
+          label: 'Guides',
         },
+        {to: '/help', label: 'Support', position: 'left'},
+
       ],
     },
     footer: {
@@ -44,8 +71,12 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Tutorials',
+              to: '/changelog',
+            },
+            {
+              label: 'Guides',
+              to: '/changelog',
             },
           ],
         },
@@ -57,12 +88,16 @@ module.exports = {
               href: 'https://stackoverflow.com/questions/tagged/docusaurus',
             },
             {
-              label: 'Discord',
+              label: 'Slack',
               href: 'https://discordapp.com/invite/docusaurus',
             },
             {
               label: 'Twitter',
               href: 'https://twitter.com/docusaurus',
+            },
+            {
+              label: 'Something',
+              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
             },
           ],
         },
@@ -70,21 +105,21 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Roadmap',
+              to: '/changelog',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Training',
+              to: '/changelog',
             },
+            // {
+            //   label: 'GitHub',
+            //   href: 'https://github.com/facebook/docusaurus',
+            // },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-    },
-    prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
+      copyright: `Copyright © ${new Date().getFullYear()} Plone Community. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -94,13 +129,20 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/edit/master/website/',
+          showLastUpdateTime: true,
+          routeBasePath: '/'
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
+          path: 'changelog',
+          routeBasePath: 'changelog',
+          blogSidebarTitle: 'Documentation updates',
+          blogTitle: 'Docs updates',
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
