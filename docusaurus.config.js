@@ -9,13 +9,13 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
   customFields: {
     description:
       'An optimized site generator in React. Docusaurus helps you to move fast and write content. Build documentation websites, blogs, marketing pages, and more.',
   },
-  organizationName: 'plone', // Usually your GitHub org/user name.
-  projectName: 'documentation', // Usually your repo name.
+  organizationName: 'ocular-d', // Usually your GitHub org/user name.
+  projectName: 'docusaurus-demo', // Usually your repo name.
   // plugins: [
   //   require.resolve('@cmfcmf/docusaurus-search-local')
   // ],
@@ -44,24 +44,28 @@ module.exports = {
       title: 'Documentation',
       logo: {
         alt: 'Logo',
-        src: 'img/logo.svg',
+        src: 'img/ocld-logo.png',
       },
       items: [
         {
           //type: 'doc',
-          docId: 'upload',
-          to: '/tutorials/upload',
+          //docId: 'upload',
+          to: 'intro',
           position: 'left',
-          label: 'Tutorials',
+          label: 'Tutorial',
         },
         {
-          //type: 'doc',
-          docId: 'upload',
-          to: '/tutorials/upload',
+          to: 'blog',
           position: 'left',
-          label: 'Guides',
+          label: 'Blog',
         },
-        {to: '/help', label: 'Support', position: 'left'},
+        {
+          href: 'https://github.com/facebook/docusaurus',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
+        },
+        //{to: '/help', label: 'Support', position: 'left'},
 
       ],
     },
@@ -72,12 +76,12 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorials',
-              to: '/changelog',
+              label: 'Tutorial',
+              to: '/intro',
             },
             {
-              label: 'Guides',
-              to: '/changelog',
+              label: 'Blog',
+              to: '/blog',
             },
           ],
         },
@@ -106,21 +110,13 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Roadmap',
-              to: '/changelog',
+              label: 'GitHub',
+              href: 'https://github.com/ocular-d',
             },
-            {
-              label: 'Training',
-              to: '/changelog',
-            },
-            // {
-            //   label: 'GitHub',
-            //   href: 'https://github.com/facebook/docusaurus',
-            // },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Plone Community. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} ocular-d. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -138,8 +134,8 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          path: 'changelog',
-          routeBasePath: 'changelog',
+          path: 'blog',
+          routeBasePath: 'blog',
           blogSidebarTitle: 'Documentation updates',
           blogTitle: 'Docs updates',
           editUrl:
