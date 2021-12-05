@@ -60,6 +60,13 @@ module.exports = {
           label: 'Blog',
         },
         {
+          type: 'doc',
+          docId: 'intro',
+          label: 'Download',
+          position: 'right',
+          className: 'btn-light',
+        },
+        {
           href: 'https://github.com/facebook/docusaurus',
           position: 'right',
           className: 'header-github-link',
