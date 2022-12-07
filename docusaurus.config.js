@@ -7,7 +7,7 @@ module.exports = {
   tagline: 'Docs are cool',
   url: 'https://sven.io',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
   customFields: {

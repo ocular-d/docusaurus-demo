@@ -1,0 +1,38 @@
+services:
+  traefik:
+    image: "traefik:v2.9"
+    init: true
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - web-network
+
+  website:
+    image: "demo-site"
+    init: true
+    container_name: "demo-website"
+    # ports:
+    #   - "80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.website.rule=Host(`website.localhost`)"
+      - "traefik.http.routers.website.entrypoints=web"
+      - "traefik.http.services.home.loadbalancer.server.port=8080"
+      #- "traefik.port=9090"
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    name: web-network
+    driver: bridge
