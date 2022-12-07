@@ -21,14 +21,11 @@ services:
     image: "demo-site"
     init: true
     container_name: "demo-website"
-    # ports:
-    #   - "80"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.website.rule=Host(`website.localhost`)"
       - "traefik.http.routers.website.entrypoints=web"
       - "traefik.http.services.home.loadbalancer.server.port=8080"
-      #- "traefik.port=9090"
     networks:
       - web-network
 
