@@ -26,6 +26,7 @@ services:
       - "traefik.http.routers.website.rule=Host(`website.localhost`)"
       - "traefik.http.routers.website.entrypoints=web"
       - "traefik.http.services.home.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.test-compress.compress=true"
     networks:
       - web-network
 
