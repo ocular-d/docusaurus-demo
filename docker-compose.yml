@@ -23,12 +23,33 @@ services:
     container_name: "demo-website"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.website.rule=Host(`website.localhost`)"
-      - "traefik.http.routers.website.entrypoints=web"
+      #- "traefik.http.routers.website.rule=Host(`website.localhost`)"
+      #- "traefik.http.routers.website.entrypoints=web"
       - "traefik.http.services.home.loadbalancer.server.port=8080"
       - "traefik.http.middlewares.test-compress.compress=true"
     networks:
       - web-network
+
+  varnish:
+    image: varnish:stable
+    init: true
+    container_name: "varnish"
+    depends_on:
+      - "website"
+    volumes:
+      - "./_config/varnish/default.vcl:/etc/varnish/default.vcl:ro"
+    tmpfs:
+      - /var/lib/varnish:exec
+    networks:
+      - web-network
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=web-network
+      - traefik.constraint-label=web-network
+      # SERVICE
+      - traefik.http.services.varnish.loadbalancer.server.port=80
+      - "traefik.http.routers.varnish.entrypoints=web"
+      - "traefik.http.routers.website.rule=Host(`website.localhost`)"
 
 networks:
   web-network:
