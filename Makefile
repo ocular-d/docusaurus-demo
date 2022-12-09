@@ -26,4 +26,4 @@ docker-build: ## Build production image
 .PHONY: docker-run
 docker-run: ## Start prod container locally on port 8080
 	@echo "$(YELLOW)==> Please open your browser localhost:8080$(RESET)"
-	@docker run --rm -p 8080:8080 --name public-api-docs $(NAME):latest
+	@docker run --rm -p 8080:8080 --name $(NAME) $(NAME):latest
