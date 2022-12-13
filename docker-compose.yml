@@ -4,11 +4,15 @@ services:
     init: true
     container_name: "traefik"
     command:
-      #- "--log.level=DEBUG"
+      - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
+      - "--experimental.plugins.cache.modulename=github.com/traefik/plugin-simplecache"
+      - "--experimental.plugins.cache.version=v0.2.1"
+      - "--accesslog=true"
+      - "--accesslog.filePath=/logs/access.log"
     labels:
       # Enable gzip compression
       - "traefik.http.routers.traefik.middlewares=traefik-compress"
@@ -20,6 +24,7 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./logs/:/logs/"
     networks:
       - web-network
 
@@ -34,6 +39,7 @@ services:
       - "traefik.http.services.home.loadbalancer.server.port=8080"
       - "traefik.http.middlewares.website.compress=true"
       - "traefik.http.routers.website.middlewares=website"
+      - "traefik.http.middlewares.my-cache.plugin.cache.path=/tmp/"
 
     networks:
       - web-network
