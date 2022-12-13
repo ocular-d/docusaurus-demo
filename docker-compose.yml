@@ -9,6 +9,12 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
+    labels:
+      # Enable gzip compression
+      - "traefik.http.routers.traefik.middlewares=traefik-compress"
+      - "traefik.http.middlewares.traefik-compress.compress=true"
+
+
     ports:
       - "80:80"
       - "8080:8080"
@@ -20,13 +26,15 @@ services:
   website:
     image: "demo-site"
     init: true
-    container_name: "demo-website"
+    container_name: "website"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.website.rule=Host(`website.localhost`)"
       - "traefik.http.routers.website.entrypoints=web"
       - "traefik.http.services.home.loadbalancer.server.port=8080"
-      - "traefik.http.middlewares.test-compress.compress=true"
+      - "traefik.http.middlewares.website.compress=true"
+      - "traefik.http.routers.website.middlewares=website"
+
     networks:
       - web-network
 
