@@ -3,17 +3,18 @@ services:
     image: "traefik:v2.9"
     init: true
     container_name: "traefik"
+    labels:
+    - "traefik.http.middlewares.gzip.compress=true"
+    - traefik.http.middlewares.gzip.compress.excludedcontenttypes=image/png, image/jpeg, font/woff2
     command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
+      - "--configfile=/etc/traefik/traefik.yaml"
     ports:
       - "80:80"
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - ./_config/:/etc/traefik
+      - ./dynamic/:/dynamic/
     networks:
       - web-network
 
@@ -26,7 +27,7 @@ services:
       - "traefik.http.routers.website.rule=Host(`website.localhost`)"
       - "traefik.http.routers.website.entrypoints=web"
       - "traefik.http.services.home.loadbalancer.server.port=8080"
-      - "traefik.http.middlewares.test-compress.compress=true"
+      - "traefik.http.routers.website.middlewares=gzip"
     networks:
       - web-network
 

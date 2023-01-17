@@ -1,0 +1,30 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false
+log:
+  level: "DEBUG"
+api:
+  insecure: true
+  dashboard: true
+  debug: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: unix://var/run/docker.sock
+    watch: true
+    exposedByDefault: false
+  file:
+    directory: /dynamic/
+    watch: true
+
+experimental:
+  plugins:
+    plugin-simplecache:
+      moduleName: "github.com/traefik/plugin-simplecache"
+      version: "v0.2.1"
