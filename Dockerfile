@@ -1,5 +1,5 @@
 # ---- Base Node ----
-FROM node:18-alpine3.16 as base
+FROM node:19-alpine3.17 as base
 LABEL maintainer "Docs Team<sven@testthedocs.org>"
 
 # hadolint ignore=DL3018
@@ -37,7 +37,7 @@ RUN yarn install \
 
 # ---- Release ----
 # Copy static docs to alpine-based NGINX container.
-FROM nginx:1.23.2-alpine
+FROM nginx:1.23.3-alpine
 LABEL maintainer "Docs Team<sven@testthedocs.org>"
 
 ENV NGINX_ENTRYPOINT_QUIET_LOGS=1
