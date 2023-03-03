@@ -1,6 +1,6 @@
 # ---- Base Node ----
 FROM node:18-alpine3.16 as base
-LABEL maintainer "Onna Docs Team<sven@testthedocs.org>"
+LABEL maintainer "Docs Team<sven@testthedocs.org>"
 
 # hadolint ignore=DL3018
 RUN apk --no-cache add git \
