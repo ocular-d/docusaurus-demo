@@ -34,3 +34,13 @@ npx docusaurus start
 Your site starts at `http://localhost:3000`.
 
 Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+
+```toml
+# Declaring the user list
+[http.middlewares]
+  [http.middlewares.test-auth.basicAuth]
+    users = [
+      "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/",
+      "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
+    ]
+```

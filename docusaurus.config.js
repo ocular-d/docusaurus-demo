@@ -38,7 +38,7 @@ module.exports = {
     //hideableSidebar: true,
     prism: {
       theme: require('prism-react-renderer/themes/dracula'),
-      additionalLanguages: ['ini', 'graphql', 'git', 'docker', 'makefile'],
+      additionalLanguages: ['ini', 'graphql', 'git', 'docker', 'makefile', 'toml'],
     },
     navbar: {
       title: 'Documentation',
